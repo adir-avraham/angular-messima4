@@ -6,7 +6,7 @@ router.get('/', async (req, res, next) => {
     
     
     try {
-        const operations = await Operation.find().populate("account");
+        const operations = await Operation.find()
         if (!operations) return res.json({message: "not found", status: false})
         res.json({operations: operations , status: true})
     } catch (err) {

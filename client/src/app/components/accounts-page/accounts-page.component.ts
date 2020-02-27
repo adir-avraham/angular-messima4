@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from 'src/app/services/accounts/accounts.service';
 import { FormBuilder } from '@angular/forms';
+import { OperationsService } from 'src/app/services/operations/operations.service';
 
 @Component({
   selector: 'app-accounts-page',
@@ -15,7 +16,9 @@ export class AccountsPageComponent implements OnInit {
   public typeForm: string;
   account_id_Form: String;
 
-  constructor(private accountsService: AccountsService, private formBuilder: FormBuilder) {
+  constructor(private accountsService: AccountsService,
+     private formBuilder: FormBuilder,
+     private operationsService: OperationsService) {
 
     this.myForm = this.formBuilder.group({
       account_id: null,
@@ -62,22 +65,23 @@ export class AccountsPageComponent implements OnInit {
     }
     if (!newOperation.account_id) return;
     console.log(newOperation)
-    //this.carsService.createEvent(newOperation).subscribe(result => {
+    this.operationsService.createOperation(newOperation).subscribe(result => {
 
-      //const {events } = result.carAndEvents
-    //console.log(events)
-    //this.events = events
+      console.log({result})
+      const { operations } = result.accountAndOperations
+    this.operations = operations
 
-    //}, err => {
-     // console.log(err)
-    //})  
+    }, err => {
+     console.log(err)
+    })  
     
     this.myForm.reset()
     this.myForm.patchValue({
       interest: null,
       payments: null,
       sum: null,
-      type: null
+      type: null,
+      account_id: null
     })
   }
 

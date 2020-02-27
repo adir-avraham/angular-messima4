@@ -41,7 +41,7 @@ router.post('/', async (req, res, next) => {
         const [account] = await Account.find({_id: account_id})
         account.operations.push(savedOperation)
         const saved = await account.save()
-        const [accountAndOperations] =  await Operation.find({_id: account_id}).populate('operations') 
+        const [accountAndOperations] =  await Account.find({_id: account_id}).populate('operations') 
         res.json({saved: saved, accountAndOperations: accountAndOperations, status: true})
 
     } catch (err) {
