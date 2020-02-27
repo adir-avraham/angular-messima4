@@ -7,13 +7,18 @@ const mongoose = require('mongoose');
 
 
 //define routes
+const getAllOperations = require('./routes/getAllOperations');
+const getAllAccounts = require('./routes/getAllAccounts');
+const createOperation = require('./routes/createOperation');
 
 
 app.use(cors());
 app.use(bodyParser.json());
 
 //index routes
-
+app.use('/getAllOperations', getAllOperations)
+app.use('/getAllAccounts', getAllAccounts)
+app.use('/createOperation', createOperation)
 
 
 mongoose.connect(process.env.DB_CONNECTION, {

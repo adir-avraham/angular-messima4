@@ -8,12 +8,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccountsPageComponent } from './components/accounts-page/accounts-page.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AccountsPageComponent
   ],
   imports: [
     BrowserModule,
