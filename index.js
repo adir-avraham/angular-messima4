@@ -10,16 +10,16 @@ const mongoose = require('mongoose');
 const getAllOperations = require('./routes/getAllOperations');
 const getAllAccounts = require('./routes/getAllAccounts');
 const createOperation = require('./routes/createOperation');
-
+const getOneAccount = require('./routes/getOneAccount'); 
 
 app.use(cors());
 app.use(bodyParser.json());
 
 //index routes
-app.use('/getAllOperations', getAllOperations)
 app.use('/getAllAccounts', getAllAccounts)
 app.use('/createOperation', createOperation)
-
+app.use('/getOneAccount', getOneAccount)
+app.use('/getAllOperations', getAllOperations)
 
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,

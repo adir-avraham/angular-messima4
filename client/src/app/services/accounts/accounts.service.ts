@@ -11,6 +11,7 @@ export class AccountsService {
   public getAllAccountsUrl = 'http://localhost:4000/getAllAccounts';
 
   
+  
   constructor(private httpClient: HttpClient) { }
 
   
@@ -19,11 +20,19 @@ export class AccountsService {
     return this.httpClient.get(this.getAllAccountsUrl);
   }
 
+  // getOneAccount(account_id: any): Observable<any> {
+  //   return this.httpClient.get(this.getAllAccountsUrl).pipe(map((result: any) => {
+  //     const { accounts } = result
+  //     const selectedAccount = accounts.filter(account => account._id === account_id) 
+  //     return selectedAccount[0].operations;
+  // }))
+  // }
+
+
   getOneAccount(account_id: any): Observable<any> {
-    return this.httpClient.get(this.getAllAccountsUrl).pipe(map((result: any) => {
-      const { accounts } = result
-      const selectedAccount = accounts.filter(account => account._id === account_id) 
-      return selectedAccount[0].operations;
+    return this.httpClient.get(`http://localhost:4000/getOneAccount/${account_id}`).pipe(map((result: any) => {
+      const  account  = result.account[0].operations
+      return account;
   }))
   }
 
